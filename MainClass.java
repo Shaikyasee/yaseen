@@ -1,13 +1,12 @@
 package com.dal.view;
 
 import java.util.Scanner;
-import java.util.function.BiPredicate;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import com.dal.controller.EmployeeController;
-//import com.dal.model.Employee;
+import com.dal.model.Employee;
 import com.dal.controller.EmployeeInterface;
 import com.dal.exception.UserNotFoundException;
 
@@ -32,8 +31,7 @@ public class MainClass {
 			pwd = br.readLine();
 			System.out.println("Please wait...");
 			Thread.sleep(2000);
-			BiPredicate<String, String> res = (u, p) -> u.equals(p);
-			if (res.test(pwd, un)) {
+			if (un.equals("Deeps") && pwd.equals("pass")) {
 				System.out.println("Welcome " + un);
 				do {
 					
@@ -42,9 +40,6 @@ public class MainClass {
 					System.out.println("2. View Employee");
 					System.out.println("3. Serialize Employee");
 					System.out.println("4. Deserialize Employee");
-					System.out.println("5. Update Employee");
-					System.out.println("6. Delete Employee");
-					System.out.println("7. Sort Employees");
 					int choice = sc.nextInt();
 					switch (choice) {
 					case 1: {
@@ -62,26 +57,6 @@ public class MainClass {
 					}
 					case 4: {
 						ec.deserializee("dedalus.txt");
-						break;
-					}
-					
-					case 5: {
-						System.out.println("Enter the employee number to update: ");
-						int eno = sc.nextInt();
-						ec.updateEmployee(eno);
-						break;
-					}
-					case 6: {
-						System.out.println("Enter the employee number to Delete: ");
-						int eno = sc.nextInt();
-						ec.deleteEmployee(eno);
-						break;
-					}
-					case 7:{
-						System.out.println("Sort by name(1) or sort by Empno(2)?");
-						int op = sc.nextInt();
-						ec.sortEmployee(op);
-						ec.viewEmployee();
 						break;
 					}
 					default: {
