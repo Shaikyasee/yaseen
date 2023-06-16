@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -103,6 +104,17 @@ public class EmployeeController implements EmployeeInterface,Serializable {
 		ee.DeleteEmployee(eno);
 	}
 	
+	public void sortEmployee(int op) {
+		if(op == 1) {
+			Collections.sort(getEmplist(),Employee.nameComparator);
+			ee.sortEmployee(op);
+//			emplist.sort(Employee.nameComparator);
+		}
+		else {
+			Collections.sort(getEmplist());
+			ee.sortEmployee(op);
+		}
+	}
 	
 }
 

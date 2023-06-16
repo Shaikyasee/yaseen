@@ -72,9 +72,27 @@ public class EmployeeDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
+		public void sortEmployee(int op) {
+			con =MyDbConnection.getMyConnection();
+			try {
+				stmt =con.createStatement();
+				if(op==1) {
+				rs =stmt.executeQuery("select * from dedemp order by ename");
+				}
+				else {
+				rs =stmt.executeQuery("select * from dedemp order by empno");
+				}
+				while(rs.next()) {
+					System.out.println(rs.getInt(1) + " -- " + rs.getString(2));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 	
 	
 }

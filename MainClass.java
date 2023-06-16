@@ -44,6 +44,7 @@ public class MainClass {
 					System.out.println("4. Deserialize Employee");
 					System.out.println("5. Update Employee");
 					System.out.println("6. Delete Employee");
+					System.out.println("7. Sort Employees");
 					int choice = sc.nextInt();
 					switch (choice) {
 					case 1: {
@@ -74,6 +75,13 @@ public class MainClass {
 						System.out.println("Enter the employee number to Delete: ");
 						int eno = sc.nextInt();
 						ec.deleteEmployee(eno);
+						break;
+					}
+					case 7:{
+						System.out.println("Sort by name(1) or sort by Empno(2)?");
+						int op = sc.nextInt();
+						ec.sortEmployee(op);
+						ec.viewEmployee();
 						break;
 					}
 					default: {

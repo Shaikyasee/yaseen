@@ -13,4 +13,5 @@ public interface EmployeeInterface {
 	public  void deserializee(String filename) throws IOException;
 	public void updateEmployee(int eno);
 	public void deleteEmployee(int eno);
+	public void sortEmployee(int op);
 }

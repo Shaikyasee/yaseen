@@ -1,28 +1,46 @@
-package model.dadu;
+package com.dal.model;
 
-public class Employee {
-	
+import java.io.Serializable;
+import java.util.Comparator;
+
+
+
+public class Employee implements Comparable<Employee>,Serializable{
 	private int empno;
-	private String name;
-	
-	
+	private String ename;
 	public int getEmpno() {
 		return empno;
 	}
 	public void setEmpno(int empno) {
 		this.empno = empno;
 	}
-	public String getName() {
-		return name;
+	public String getEname() {
+		return ename;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setEname(String ename) {
+		this.ename = ename;
 	}
-	@Override
 	public String toString() {
-		return "Employee [empno=" + empno + ", name=" + name + "]";
+		return "Employee [empno=" + empno + ", ename=" + ename + "]";
 	}
-	 
 	
+	//Anonyomous class
+	public static Comparator<Employee> nameComparator = new Comparator<Employee>() {
 
+		@Override
+		public int compare(Employee s1, Employee s2) {
+			
+			return (s1.getEname().compareTo(s2.getEname()));
+		}
+		
+		
+	};
+
+	@Override
+	public int compareTo(Employee o) {
+		// TODO Auto-generated method stub
+		return this.empno - o.empno;
+	}
+	
+	
 }
