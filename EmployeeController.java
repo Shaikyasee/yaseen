@@ -8,15 +8,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import com.dal.dao.EmployeeDao;
 import com.dal.model.Employee;
 
 public class EmployeeController implements EmployeeInterface,Serializable {
 	
 	Scanner sc = new Scanner(System.in);
 	List<Employee> emplist = new ArrayList(); 
+	EmployeeDao ee = new EmployeeDao();
 	public void addEmployee() {
 		Employee emp = new Employee();
 		System.out.println("Enter ENo:");
@@ -26,6 +29,7 @@ public class EmployeeController implements EmployeeInterface,Serializable {
 		String ename = sc.next();
 		emp.setEname(ename);
 		emplist.add(emp);
+		 ee.insertEmployee(emp);
 		System.out.println("Employee created");
 	}
 	
@@ -37,6 +41,7 @@ public class EmployeeController implements EmployeeInterface,Serializable {
 	public void viewEmployee() {
 //		System.out.println(emp.getEmpno());
 //		System.out.println(emp.getEname());
+		ee.showEmployee();
 		System.out.println(emplist);
 		
 	}
@@ -68,9 +73,15 @@ public class EmployeeController implements EmployeeInterface,Serializable {
 		
 		List<Employee> emp = (List<Employee>)ois.readObject();
 		System.out.println("DeSerilized from file "+filename);
-		System.out.println(emp);
-//		System.out.println(emp.getEmpno());
-//		System.out.println(emp.getEname());
+		emp.forEach(e -> {
+			System.out.println("Employee No: "+e.getEmpno());
+			System.out.println("Employee Name: "+e.getEname());
+		});
+//		for(int i=0;i<emp.size();i++) {
+//			System.out.println(i+1+".Employee");
+//			System.out.println("Employee No: "+emp.get(i).getEmpno());
+//			System.out.println("Employee Name: "+emp.get(i).getEname());
+//		}
 		ois.close();
 		fis.close();
 		}
@@ -84,5 +95,26 @@ public class EmployeeController implements EmployeeInterface,Serializable {
 		}
 
 	}
+	public void updateEmployee(int eno) {
+		System.out.println("Enter the new name to update: ");
+		String ename = sc.next();
+		ee.UpdateEmployee(eno, ename);
+	}
+	public void deleteEmployee(int eno) {
+		ee.DeleteEmployee(eno);
+	}
+	
+	public void sortEmployee(int op) {
+		if(op == 1) {
+			Collections.sort(getEmplist(),Employee.nameComparator);
+			ee.sortEmployee(op);
+//			emplist.sort(Employee.nameComparator);
+		}
+		else {
+			Collections.sort(getEmplist());
+			ee.sortEmployee(op);
+		}
+	}
 	
 }
+
