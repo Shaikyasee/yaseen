@@ -25,8 +25,8 @@ public class student {
 	public static void main(String[] args) {
 		student setname = new student();
 		setname.display("Mani",25);
-//		System.out.println(setname.setName("kranthi"));
-//		System.out.println(setname.age(20));
+//		System.out.println(setname.setName("mani"));
+//		System.out.println(setname.age(25));
 
 	}
 
